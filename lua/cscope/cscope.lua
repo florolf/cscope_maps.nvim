@@ -109,7 +109,7 @@ local cscope_find_helper = function(op_n, op_s, symbol)
 
 	if M.opts.use_telescope then
 		cscope_telescope_picker.prepare(parsed_output, title)
-		cscope_telescope_picker.run()
+		cscope_telescope_picker.run({push_tagstack_on_edit = true})
 	else
 		vim.fn.setqflist(parsed_output, "r")
 		vim.fn.setqflist({}, "a", { title = title })
