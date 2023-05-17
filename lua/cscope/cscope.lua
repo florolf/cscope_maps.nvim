@@ -138,6 +138,8 @@ M.cscope = function(cmd, op, symbol)
 		cscope_find(op, symbol)
 	elseif cmd == "help" or cmd == nil then
 		cscope_help()
+	elseif cmd == "add" then
+		M.opts.db_file = op
 	else
 		print("cscope: command '" .. cmd .. "' is invalid")
 	end
