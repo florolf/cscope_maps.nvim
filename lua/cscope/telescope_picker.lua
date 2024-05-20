@@ -9,7 +9,7 @@ local utils = require("telescope.utils")
 
 local make_from_cscope = function(entry)
 	local items = {
-		{ width = 30 },
+		{ width = 60 },
 		{ remaining = true },
 	}
 	local displayer = entry_display.create { separator = "▏", items = items }
@@ -31,7 +31,7 @@ local make_from_cscope = function(entry)
 				ordinal = entry.filename .. " " .. entry.text,
 				display = make_display,
 
-				filename = entry.filename,
+				filename = entry.fullpath,
 				lnum = tonumber(entry.lnum),
 				text = entry.text,
 			}, {})

@@ -2,6 +2,7 @@ local M = {}
 
 M.opts = {
 	db_file = "./cscope.out",
+	pre_path = "",
 	use_telescope = false,
 }
 
@@ -48,6 +49,7 @@ local cscope_parse_line = function(line)
 
 	-- Populate t with filename, context and linenumber
 	local sp = vim.split(line, "%s+")
+	t["fullpath"] = M.opts.pre_path .. sp[1]
 	t["filename"] = sp[1]
 	t["ctx"] = sp[2]
 	t["lnum"] = sp[3]
@@ -140,6 +142,11 @@ M.cscope = function(cmd, op, symbol)
 		cscope_help()
 	elseif cmd == "add" then
 		M.opts.db_file = op
+		if symbol == nil then
+			M.opts.pre_path = ""
+		else
+			M.opts.pre_path = symbol .. "/"
+		end
 	else
 		print("cscope: command '" .. cmd .. "' is invalid")
 	end
